@@ -1,96 +1,66 @@
-# Tweet Vanisher
 
-Bulk delete tweets and retweets from your profile with Tweet Vanisher.
+🧹 Tweet Vanisher
 
-## Overview
+Bulk-delete your tweets and replies with one copy-paste. Fast, local, no installs, no logins. Just your browser and a clean conscience.
 
-Tweet Vanisher is a powerful script designed to help you clean up your Twitter profile by deleting all tweets and retweets in bulk. Whether you're newly famous and wish to avoid scrutiny over past opinions, or you're preparing for a job interview and want to present a clean online image, Tweet Vanisher is the tool for you.
+⸻
 
-> "It is easier to live with a bad conscience than with a bad reputation." - Friedrich Nietzsche
+🚀 Overview
 
-## How to Use
+Tweet Vanisher is a JavaScript snippet you can run in your browser to automatically delete your tweets and replies from your timeline.
 
-### Prerequisites
+Whether you’re:
+	•	newly famous and scrubbing your past,
+	•	prepping for job interviews,
+	•	or just want a fresh start…
 
-- You must be logged into your Twitter account for the script to function correctly.
+Tweet Vanisher gives you an easy way to clean house.
 
-### Instructions
+“It is easier to live with a bad conscience than with a bad reputation.”
+— Friedrich Nietzsche
 
-1. Navigate to your Twitter profile's replies page by replacing `USER` with your actual Twitter username in the following URL:
+⸻
 
-   ```
-   https://x.com/USER/with_replies
-   ```
+✅ What It Deletes
+	•	✅ Your original tweets
+	•	✅ Replies you’ve posted
+	•	❌ Retweets (not yet supported)
+	•	❌ Liked tweets
 
-2. Open the browser's console:
-   - **Chrome**: Right-click on the page and select `Inspect`, then go to the `Console` tab.
-   - **Firefox**: Right-click on the page and select `Inspect Element`, then go to the `Console` tab.
-   - **Safari**: Right-click on the page, select `Inspect Element`, then go to the `Console` tab.
-   - **Edge**: Right-click on the page and select `Inspect`, then go to the `Console` tab.
+⸻
 
-3. Copy and paste the script below into the console and press `Enter`:
+🛠 How to Use
+	1.	Go to your Twitter profile’s “Posts” tab:
 
-   ```javascript
-   const deleteAllTweets = async () => {
-       const processedButtons = new Set();
-       const getDeleteButtons = () => Array.from(document.querySelectorAll('[data-testid="tweet"] [data-testid="caret"]'));
-       const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+https://x.com/YourHandle
 
-       const deleteBatch = async (buttons) => {
-           const deletePromises = buttons.map(async (button) => {
-               button.click();
-               await delay(250);
+	2.	Open the DevTools Console:
+	•	Chrome: Right-click → Inspect → Console
+	•	Firefox: Right-click → Inspect → Console
+	•	Safari: Right-click → Inspect Element → Console
+	•	Edge: Right-click → Inspect → Console
+	3.	Paste the entire script into the console and hit Enter.
+	4.	You’ll be prompted for your Twitter handle (e.g. @yourusername). Enter it exactly, including the @.
+	5.	The script will begin deleting your tweets and replies.
 
-               const menuItems = Array.from(document.querySelectorAll('[role="menuitem"]'));
-               const deleteOption = menuItems.find(item => item.textContent === 'Delete');
+⸻
 
-               if (deleteOption) {
-                   deleteOption.click();
-                   document.querySelector('[data-testid="confirmationSheetConfirm"]')?.click();
-               } else {
-                   const tweetContainer = button.closest('[data-testid="tweet"]');
-                   const unretweetButton = tweetContainer?.querySelector('[data-testid="unretweet"]');
+💡 Notes
+	•	The script saves progress in your browser using localStorage. If it’s interrupted, you can re-run it and it will skip already-deleted tweets.
+	•	If the script freezes or malfunctions, you can manually reload the page and run it again. This usually resolves issues with long scrolling sessions or stale DOM.
+	•	You can press the Escape key at any time to stop the process and re-enable your browser normally.
 
-                   if (unretweetButton) {
-                       unretweetButton.click();
-                       await delay(250);
-                       document.querySelector('[data-testid="unretweetConfirm"]')?.click();
-                   }
-               }
-           });
+⸻
 
-           await Promise.all(deletePromises);
-       };
+🧑‍💻 Who Should Use This?
+	•	Public figures cleaning their online presence
+	•	Job seekers polishing their profile
+	•	Anyone who wants to start fresh on Twitter
 
-       while (true) {
-           const deleteButtons = getDeleteButtons().filter(button => !processedButtons.has(button));
-           if (deleteButtons.length === 0) break;
+⸻
 
-           const batchSize = 10;
-           for (let i = 0; i < deleteButtons.length; i += batchSize) {
-               const batch = deleteButtons.slice(i, i + batchSize);
-               await deleteBatch(batch);
-               await delay(3000);
-           }
-       }
+⚠️ Disclaimer
 
-       console.log('All tweets deleted successfully!');
-   };
+This script permanently deletes your content. Once gone, tweets cannot be recovered. Consider downloading your Twitter archive before using Tweet Vanisher.
 
-   deleteAllTweets();
-   ```
-
-### Notes
-
-- **Complete Deletion**: This script deletes all tweets and retweets from your profile.
-- **Likes are not removed**: The script does not affect your liked tweets.
-
-## Who Should Use This Script?
-
-- **Newly Famous Individuals**: Avoid potential controversy by removing past tweets that might not align with your current public image.
-- **Job Seekers**: Clean up your social media presence before job interviews to ensure your profile is professional.
-- **And Many Others**: Anyone looking to start fresh on Twitter or concerned about their digital footprint.
-
-## Disclaimer
-
-Use this script responsibly. Ensure you have considered the implications of deleting your tweets, as this action cannot be undone.
+Use responsibly.
