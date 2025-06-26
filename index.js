@@ -1,23 +1,22 @@
 (() => {
     const SCRIPT_KEY = '__tweet_vanisher_script_running__';
+    const STORAGE_KEY = 'deletedTweetIds';
+    const USER_KEY = '__tweet_vanisher_username__';
 
-    // If already running, prevent duplicate execution
-    if (localStorage.getItem(SCRIPT_KEY) === '1') {
-        console.warn('[Tweet Vanisher] Script is already running.');
-        return;
-    }
+    // Always clear script run state on load
+    localStorage.removeItem(SCRIPT_KEY);
 
-    const username = prompt("Enter your Twitter handle (include @):", "@YourUsername");
+    const username = prompt("Enter your Twitter handle (include @):", localStorage.getItem(USER_KEY) || "@YourUsername");
     if (!username || !username.startsWith("@")) {
         alert("Invalid username. Script aborted.");
         return;
     }
 
-    localStorage.setItem('__tweet_vanisher_username__', username);
+    localStorage.setItem(USER_KEY, username);
     localStorage.setItem(SCRIPT_KEY, '1');
 
     const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-    const processedIds = new Set(JSON.parse(localStorage.getItem('deletedTweetIds') || '[]'));
+    const processedIds = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'));
     const yourHandle = username;
 
     const createOverlay = () => {
@@ -50,7 +49,7 @@
     const getTweetElements = () => Array.from(document.querySelectorAll('[data-testid="tweet"]'));
     const isOwnTweet = (tweet) => tweet.innerText.includes(yourHandle);
     const getTweetId = (tweet) => tweet.getAttribute('data-tweet-id') || tweet.innerText.slice(0, 50);
-    const saveProgress = () => localStorage.setItem('deletedTweetIds', JSON.stringify([...processedIds]));
+    const saveProgress = () => localStorage.setItem(STORAGE_KEY, JSON.stringify([...processedIds]));
 
     const clickCaretAndDelete = async (tweet) => {
         const caret = tweet.querySelector('[data-testid="caret"]');
