@@ -36,6 +36,7 @@ Whether you're:
 ## 📂 File Structure
 
 - [`index.js`](./index.js): The script you copy and paste into your browser’s DevTools Console.
+- [bookmarks.js] This script deletes bookmarks.
 - [`README.md`](./README.md): You're reading it.
 
 ---
