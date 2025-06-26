@@ -1,66 +1,100 @@
+# Tweet Vanisher
 
-🧹 Tweet Vanisher
+**Bulk-delete your tweets and replies using a simple browser script. No tools, no installs, just clean up with copy & paste.**
 
-Bulk-delete your tweets and replies with one copy-paste. Fast, local, no installs, no logins. Just your browser and a clean conscience.
+---
 
-⸻
+## 🧹 Overview
 
-🚀 Overview
+Tweet Vanisher is a JavaScript snippet (`index.js`) designed to help you quickly and safely delete **your tweets and replies** from your Twitter profile.
 
-Tweet Vanisher is a JavaScript snippet you can run in your browser to automatically delete your tweets and replies from your timeline.
+Whether you're:
+- newly famous and want to scrub old opinions,
+- preparing for a job interview,
+- or just starting fresh—
 
-Whether you’re:
-	•	newly famous and scrubbing your past,
-	•	prepping for job interviews,
-	•	or just want a fresh start…
+**Tweet Vanisher makes it easy to wipe your timeline clean.**
 
-Tweet Vanisher gives you an easy way to clean house.
+> "_It is easier to live with a bad conscience than with a bad reputation._"  
+> — Friedrich Nietzsche
 
-“It is easier to live with a bad conscience than with a bad reputation.”
-— Friedrich Nietzsche
+---
 
-⸻
+## ✅ Features
 
-✅ What It Deletes
-	•	✅ Your original tweets
-	•	✅ Replies you’ve posted
-	•	❌ Retweets (not yet supported)
-	•	❌ Liked tweets
+- ✔️ Deletes your **own tweets**
+- ✔️ Deletes **replies** you’ve posted
+- ✔️ Skips tweets you don’t own
+- ✔️ Prompts for your Twitter `@handle`
+- ✔️ Saves progress across reloads using `localStorage`
+- ✔️ Blocks accidental user interaction while running
+- ❌ Does **not** delete retweets (yet)
+- ❌ Does **not** remove likes
 
-⸻
+---
 
-🛠 How to Use
-	1.	Go to your Twitter profile’s “Posts” tab:
+## 📂 File Structure
 
-https://x.com/YourHandle
+- [`index.js`](./index.js): The script you copy and paste into your browser’s DevTools Console.
+- [`README.md`](./README.md): You're reading it.
 
-	2.	Open the DevTools Console:
-	•	Chrome: Right-click → Inspect → Console
-	•	Firefox: Right-click → Inspect → Console
-	•	Safari: Right-click → Inspect Element → Console
-	•	Edge: Right-click → Inspect → Console
-	3.	Paste the entire script index.js into the console and hit Enter.
-	4.	You’ll be prompted for your Twitter handle (e.g. @yourusername). Enter it exactly, including the @.
-	5.	The script will begin deleting your tweets and replies.
+---
 
-⸻
+## 🚀 How to Use
 
-💡 Notes
-	•	The script saves progress in your browser using localStorage. If it’s interrupted, you can re-run it and it will skip already-deleted tweets.
-	•	If the script freezes or malfunctions, you can manually reload the page and run it again. This usually resolves issues with long scrolling sessions or stale DOM.
-	•	You can press the Escape key at any time to stop the process and re-enable your browser normally.
+### Prerequisites
+- Be logged in to Twitter.
+- Know your handle (e.g., `@jack`).
 
-⸻
+### Instructions
 
-🧑‍💻 Who Should Use This?
-	•	Public figures cleaning their online presence
-	•	Job seekers polishing their profile
-	•	Anyone who wants to start fresh on Twitter
+1. **Navigate to your Twitter “Posts” tab:**
 
-⸻
+https://x.com/YOUR_USERNAME
 
-⚠️ Disclaimer
+2. **Open DevTools Console:**
+- Chrome: `Right-click` → **Inspect** → **Console**
+- Firefox: `Right-click` → **Inspect** → **Console**
+- Safari: `Right-click` → **Inspect Element** → **Console**
+- Edge: `Right-click` → **Inspect** → **Console**
 
-This script permanently deletes your content. Once gone, tweets cannot be recovered. Consider downloading your Twitter archive before using Tweet Vanisher.
+3. **Open `index.js`**, copy the entire code, and **paste it into the Console**.
 
-Use responsibly.
+4. **Hit Enter** and follow the prompt to enter your `@username`.
+
+5. The script will begin automatically deleting tweets and replies.
+
+---
+
+## 🧠 Tips
+
+- **Stuck or malfunctioning?**  
+Just reload the page manually and run the script again. It will resume where it left off (already-processed tweets are skipped).
+
+- **Want to stop it?**  
+Press the `Escape` key at any time to cancel the operation and restore browser control.
+
+- **Multiple runs?**  
+Since deleted tweets are tracked in `localStorage`, re-running the script won’t repeat deletions.
+
+---
+
+## ⚠️ Disclaimer
+
+This script **permanently deletes** your content from Twitter. Deleted tweets **cannot be recovered**.
+
+Use responsibly. Consider downloading your Twitter archive first.
+
+---
+
+## 👩‍💻 Who Should Use This?
+
+- Public figures clearing old posts
+- Professionals cleaning their online footprint
+- Anyone seeking a fresh start
+
+---
+
+## 📜 License
+
+MIT — Free to use, modify, and distribute. No warranties.
