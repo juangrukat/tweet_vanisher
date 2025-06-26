@@ -39,7 +39,7 @@ https://x.com/YourHandle
 	•	Firefox: Right-click → Inspect → Console
 	•	Safari: Right-click → Inspect Element → Console
 	•	Edge: Right-click → Inspect → Console
-	3.	Paste the entire script into the console and hit Enter.
+	3.	Paste the entire script index.js into the console and hit Enter.
 	4.	You’ll be prompted for your Twitter handle (e.g. @yourusername). Enter it exactly, including the @.
 	5.	The script will begin deleting your tweets and replies.
 
