@@ -80,10 +80,10 @@
     };
 
     const scrollAndDelete = async () => {
-        let lastHeight = 0;
-        let sameHeightTries = 0;
+        let sameNoGrowthTries = 0;
+        let cycleCount = 0;
 
-        while (sameHeightTries < 5) {
+        while (sameNoGrowthTries < 5) {
             const tweets = getTweetElements();
 
             for (const tweet of tweets) {
@@ -100,15 +100,26 @@
                 await delay(1500);
             }
 
+            const previousCount = tweets.length;
+
             window.scrollTo(0, document.body.scrollHeight);
             await delay(3000);
 
-            const currentHeight = document.body.scrollHeight;
-            if (currentHeight === lastHeight) {
-                sameHeightTries++;
+            const newCount = getTweetElements().length;
+            if (newCount <= previousCount) {
+                sameNoGrowthTries++;
             } else {
-                sameHeightTries = 0;
-                lastHeight = currentHeight;
+                sameNoGrowthTries = 0;
+            }
+
+            // Force full scroll sweep every 3 passes
+            cycleCount++;
+            if (cycleCount % 3 === 0) {
+                console.log('[Tweet Vanisher] Forcing full-page scroll to trigger more tweet loads...');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                await delay(3000);
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                await delay(3000);
             }
         }
 
